@@ -47,12 +47,12 @@ export default function App() {
   return (
     <div className="app-container">
       <div className="register-container">
-        <h1 className="register-title"> Games</h1>
+        <h1 className="register-title"> Livros</h1>
 
         <input
           type="text"
           name="name"
-          placeholder="Nome"
+          placeholder="Título"
           className="register-input"
           onChange={handleaddValues}
         />
@@ -65,7 +65,7 @@ export default function App() {
         />
         <input
           type="text"
-          placeholder="Categoria"
+          placeholder="Autor"
           name="category"
           className="register-input"
           onChange={handleaddValues}

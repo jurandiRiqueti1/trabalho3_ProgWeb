@@ -6,8 +6,8 @@ const cors = require("cors");
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "root",
-  database: "crudgame",
+  password: "jurandihd180702",
+  database: "biblioteca",
 });
 
 app.use(express.json());
@@ -18,7 +18,7 @@ app.post("/register", (req, res) => {
   const { cost } = req.body;
   const { category } = req.body;
 
-  let mysql = "INSERT INTO games ( name, cost, category) VALUES (?, ?, ?)";
+  let mysql = "INSERT INTO livrosEstoque ( nome, preco, autor) VALUES (?, ?, ?)";
   db.query(mysql, [name, cost, category], (err, result) => {
     res.send(result);
   });
@@ -30,7 +30,7 @@ app.post("/search", (req, res) => {
   const { category } = req.body;
 
   let mysql =
-    "SELECT * from games WHERE name = ? AND cost = ? AND category = ?";
+    "SELECT * from livrosEstoque WHERE nome = ? AND preco = ? AND autor = ?";
   db.query(mysql, [name, cost, category], (err, result) => {
     if (err) res.send(err);
     res.send(result);
@@ -38,7 +38,7 @@ app.post("/search", (req, res) => {
 });
 
 app.get("/getCards", (req, res) => {
-  let mysql = "SELECT * FROM games";
+  let mysql = "SELECT * FROM livrosEstoque";
   db.query(mysql, (err, result) => {
     if (err) {
       console.log(err);
@@ -53,7 +53,7 @@ app.put("/edit", (req, res) => {
   const { name } = req.body;
   const { cost } = req.body;
   const { category } = req.body;
-  let mysql = "UPDATE games SET name = ?, cost = ?, category = ? WHERE id = ?";
+  let mysql = "UPDATE livrosEstoque SET nome = ?, preco = ?, autor = ? WHERE id = ?";
   db.query(mysql, [name, cost, category, id], (err, result) => {
     if (err) {
       res.send(err);
@@ -65,7 +65,7 @@ app.put("/edit", (req, res) => {
 
 app.delete("/delete/:id", (req, res) => {
   const { id } = req.params;
-  let mysql = "DELETE FROM games WHERE id = ?";
+  let mysql = "DELETE FROM livrosEstoque WHERE id = ?";
   db.query(mysql, id, (err, result) => {
     if (err) {
       console.log(err);
